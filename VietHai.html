@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ASSIGNMENT_WEEK1</title>
+</head>
+
+<body>
+    <h1>Guess the number</h1>
+    <div id="message"></div>
+    <input type="number" id="number">
+    <button id="guessButton">Guess</button>
+    <div id="limit"></div>
+    <div id="histoty">Pass Guesses: </div>
+</body>
+<script>
+    let btnGuess = document.getElementById("guessButton");
+    let edtInput = document.getElementById("number");
+    let txtMessage = document.getElementById("message");
+    let txtHistory = document.getElementById("histoty");
+    let txtLimit = document.getElementById("limit");
+
+    let limit = 0;
+
+    let result = Math.round((Math.random() * 10));
+    console.log(result);
+
+    btnGuess.addEventListener('click', function () {
+        limit++;
+        txtHistory.innerHTML += edtInput.value+ ", ";
+
+        if( limit < 10 ){
+            txtLimit.innerHTML = "You have " + (10 - limit) + " guesses left"
+        }else if( limit > 10 ){
+            btnGuess.style.display = "none";
+        }
+        if (edtInput.value > result) {
+            txtMessage.innerHTML = "Sorry your guess is too high";
+            txtMessage.style.background = "#ea7e92";
+        }if (edtInput.value < result) {
+            txtMessage.innerHTML = "Sorry your guess is too low";
+            txtMessage.style.background = "#ea7e92";
+        }if(edtInput.value == result){
+            txtMessage.innerHTML = "Congratulations!! You guessed correctly.";
+            txtMessage.style.background = "#67d067";
+            btnGuess.style.display = "none";
+        }
+    });
+</script>
+
+</html>
